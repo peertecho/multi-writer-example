@@ -1,0 +1,45 @@
+{
+  "version": 0,
+  "offset": 0,
+  "schema": [
+    {
+      "name": "writers",
+      "namespace": "multiWriter",
+      "id": 0,
+      "type": 1,
+      "indexes": [],
+      "schema": "@multiWriter/writers",
+      "derived": false,
+      "key": [
+        "key"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "invites",
+      "namespace": "multiWriter",
+      "id": 1,
+      "type": 1,
+      "indexes": [],
+      "schema": "@multiWriter/invites",
+      "derived": false,
+      "key": [
+        "id"
+      ],
+      "trigger": null
+    },
+    {
+      "name": "users",
+      "namespace": "multiWriter",
+      "id": 2,
+      "type": 1,
+      "indexes": [],
+      "schema": "@multiWriter/users",
+      "derived": false,
+      "key": [
+        "id"
+      ],
+      "trigger": null
+    }
+  ]
+}
