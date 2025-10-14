@@ -14,8 +14,8 @@ const cmd = command('multi-writer',
 )
 
 let args = []
-if (isPear) args = global.Pear.config.args
-else if (isBare) args = global.Bare.argv.slice(2)
+if (isPear) args = (Pear.app || Pear.config).args
+else if (isBare) args = Bare.argv.slice(2)
 else args = process.argv.slice(2)
 
 main(args)
