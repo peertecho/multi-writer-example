@@ -1,7 +1,7 @@
 {
-  "name": "multi-writer-example",
+  "name": "multi-writer-events",
   "version": "1.0.0",
-  "description": "Multi Writer Example",
+  "description": "Multi Writer Events",
   "main": "index.js",
   "bin": {
     "multi-writer": "bin.js"

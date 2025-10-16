@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "offset": 0,
+  "schema": [
+    {
+      "id": 0,
+      "name": "@multiWriter/add-writer",
+      "requestType": "@multiWriter/writers",
+      "version": 1
+    },
+    {
+      "id": 1,
+      "name": "@multiWriter/add-invite",
+      "requestType": "@multiWriter/invites",
+      "version": 1
+    },
+    {
+      "id": 2,
+      "name": "@multiWriter/del-invite",
+      "requestType": "@multiWriter/invites",
+      "version": 1
+    },
+    {
+      "id": 3,
+      "name": "@multiWriter/add-user",
+      "requestType": "@multiWriter/users",
+      "version": 1
+    },
+    {
+      "id": 4,
+      "name": "@multiWriter/del-user",
+      "requestType": "@multiWriter/users",
+      "version": 1
+    }
+  ]
+}

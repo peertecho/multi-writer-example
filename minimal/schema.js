@@ -1,0 +1,63 @@
+const Hyperschema = require('hyperschema')
+const HyperdbBuilder = require('hyperdb/builder')
+const Hyperdispatch = require('hyperdispatch')
+
+const NAMESPACE = 'multiWriter'
+
+const SCHEMA_DIR = './spec/schema'
+const DB_DIR = './spec/db'
+const DISPATCH_DIR = './spec/dispatch'
+
+const hyperSchema = Hyperschema.from(SCHEMA_DIR)
+const schema = hyperSchema.namespace(NAMESPACE)
+schema.register({
+  name: 'writers',
+  fields: [
+    { name: 'key', type: 'buffer', required: true }
+  ]
+})
+schema.register({
+  name: 'invites',
+  fields: [
+    { name: 'id', type: 'buffer', required: true },
+    { name: 'invite', type: 'buffer', required: true },
+    { name: 'publicKey', type: 'buffer', required: true },
+    { name: 'expires', type: 'int', required: true }
+  ]
+})
+schema.register({
+  name: 'users',
+  fields: [
+    { name: 'id', type: 'string', required: true },
+    { name: 'info', type: 'json' }
+  ]
+})
+Hyperschema.toDisk(hyperSchema)
+
+const hyperdb = HyperdbBuilder.from(SCHEMA_DIR, DB_DIR)
+const db = hyperdb.namespace(NAMESPACE)
+db.collections.register({
+  name: 'writers',
+  schema: `@${NAMESPACE}/writers`,
+  key: ['key']
+})
+db.collections.register({
+  name: 'invites',
+  schema: `@${NAMESPACE}/invites`,
+  key: ['id']
+})
+db.collections.register({
+  name: 'users',
+  schema: `@${NAMESPACE}/users`,
+  key: ['id']
+})
+HyperdbBuilder.toDisk(hyperdb)
+
+const dispatch = Hyperdispatch.from(SCHEMA_DIR, DISPATCH_DIR, { offset: 0 })
+const multiWriterDispatch = dispatch.namespace(NAMESPACE)
+multiWriterDispatch.register({ name: 'add-writer', requestType: `@${NAMESPACE}/writers` })
+multiWriterDispatch.register({ name: 'add-invite', requestType: `@${NAMESPACE}/invites` })
+multiWriterDispatch.register({ name: 'del-invite', requestType: `@${NAMESPACE}/invites` })
+multiWriterDispatch.register({ name: 'add-user', requestType: `@${NAMESPACE}/users` })
+multiWriterDispatch.register({ name: 'del-user', requestType: `@${NAMESPACE}/users` })
+Hyperdispatch.toDisk(dispatch)

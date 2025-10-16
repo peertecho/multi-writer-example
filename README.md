@@ -1,4 +1,4 @@
-# Multi Writer Example
+# Multi Writer Minimal
 
 An example using Autobase + HyperDB + Blind Pairing of Holepunch Stack
 - Autobase is for multi writers
@@ -8,13 +8,14 @@ An example using Autobase + HyperDB + Blind Pairing of Holepunch Stack
 ## Usage
 
 ```shell
+cd minimal
 npm i
 npx multi-writer -h
 
-# create a new room, and print the invite
+# create a new room, and print invite
 npx multi-writer -s tmp/writer1
 
-# join an room using an invite
+# join an room with invite
 npx multi-writer -s tmp/writer2 -i <invite>
 ```
 
@@ -28,6 +29,8 @@ npx multi-writer -s tmp/writer2 -i <invite>
 
 Run this and get the Pear app link
 ```shell
+cd minimal
+npm i
 pear stage dev
 pear seed dev
 ```
