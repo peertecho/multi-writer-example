@@ -46,7 +46,7 @@ async function addWriterInfo (room) {
 /** @type {function(MultiWriterRoom)} */
 async function printAllWriters (room) {
   const users = await room.getUsers()
-  console.log('All writers:')
+  console.log('Writers:')
   users
     .sort((a, b) => new Date(b.at) - new Date(a.at))
     .slice(0, 5)
