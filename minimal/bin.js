@@ -38,9 +38,12 @@ async function main (args) {
 async function addWriterInfo (room) {
   const userInfo = os.userInfo()
   const userId = `${os.hostname()} ~ ${process.cwd()} ~ ${room.storage}`
-  await room.addUser(userId, { ...userInfo, pid: process.pid, at: new Date().toISOString() })
+  const userData = { ...userInfo, pid: process.pid, at: new Date().toISOString() }
+  await room.addUser(userId, userData)
+  return { ...userData, userId }
 }
 
+/** @type {function(MultiWriterRoom)} */
 async function printAllWriters (room) {
   const users = await room.getUsers()
   console.log('All writers:')
