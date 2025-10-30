@@ -1,6 +1,7 @@
 /**
  * @typedef {HyperDB} View
  * @typedef {function(string, function(any, { view: View, base: Autobase }))} RouterAdd
+ * @typedef {{ add: RouterAdd }} Router
  */
 const rrp = require('resolve-reject-promise')
 const b4a = require('b4a')
@@ -36,7 +37,7 @@ class MultiWriterRoom extends ReadyResource {
     this.swarm = swarm
 
     this.dbNamespace = opts.dbNamespace || 'multiWriter'
-    /** @type {{ add: RouterAdd }} */
+    /** @type {Router} */
     this.router = new MultiWriterDispatch.Router()
     this._addRouter()
 
